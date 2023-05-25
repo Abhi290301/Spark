@@ -10,7 +10,7 @@ object SparkSessionEx {
 
     val sc = new SparkContext(conf)
 
-    val rdd = sc.parallelize(Seq(1,2,3,4,5))
+    val rdd = sc.parallelize(Seq(1, 2, 3, 4, 5))
     val rddCollect: Array[Int] = rdd.collect()
     println("Number of Partitions: " + rdd.getNumPartitions)
     println("Action: First element: " + rdd.first())
@@ -21,11 +21,6 @@ object SparkSessionEx {
 
 }
 
-
-
-
-import org.apache.spark.sql.SparkSession
-
 object SessionCreate extends App {
 
 
@@ -33,19 +28,17 @@ object SessionCreate extends App {
     .setAppName("Local[*]")
     .setAppName("TestingSession")
 
-  println("Class" +cong.getClass)
+  println("Class" + cong.getClass)
 
-  println("App master" +cong.setMaster("local[1]"))
-  println("App Master "+cong.equals(0))
+  println("App master" + cong.setMaster("local[1]"))
+  println("App Master " + cong.equals(0))
 
   try {
-    println("App Master "+cong.get("setAppName"))
+    println("App Master " + cong.get("setAppName"))
   }
-  catch  {
-    case e : Exception => println(e)
+  catch {
+    case e: Exception => println(e)
   }
-
-
 
 
 }
