@@ -12,6 +12,9 @@ object WordCountExample {
      val rdd = spark.sparkContext.textFile("C:\\tmp\\data.txt")
     println("initial partitioning count"+rdd.getNumPartitions)
 
+    val rddCheck = spark.range(5,20).toDF().rdd
+    rddCheck.foreach(println)
+
     val repar = rdd.repartition(4)
     println("After Repartioning"+repar.getNumPartitions)
 

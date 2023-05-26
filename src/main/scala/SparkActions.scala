@@ -10,7 +10,7 @@ object SparkActions {
     println("Spark Session object Created successfully.")
     val sc = new SparkContext(conf)
     println("Spark Context Created Successfully.")
-    var rdd = sc.parallelize(List(("Abhishek", 10000), ("Chandel", 20000)))
+    var rdd = sc.parallelize(List(("Abhishek", 10000), ("Chandel", 20000),("Abhinav", 200),("Chandel", 20000)))
     rdd.foreach(f => {
       println(f)
     })
@@ -21,7 +21,7 @@ object SparkActions {
     println("Aggregate : "+rddList.aggregate(0)(param0,param1))
 
 
-    val inputRDD = sc.parallelize(List(("Z", 1),("A", 20),("B", 30),("C", 40),("B", 30),("B", 60)))
+    val inputRDD = sc.parallelize(List(("Z", 1),("A", 20),("B", 10),("C", 40),("B", 30),("B", 60)))
 
     def param5 = (ac: Int ,v: (String, Int)) => ac + v._2
     def param6 = (acc : Int , acc1 : Int) =>acc + acc1
@@ -55,7 +55,12 @@ object SparkActions {
     println("Take : " +rddList.take(2).mkString(","))
 
     println("Take Ordered : " +rdd.takeOrdered(1).mkString(","))
+
     println("Take Sample: " +rddList.takeOrdered(2).mkString(","))
+
+    //Using Distinct
+
+    rdd.distinct().foreach(f=>println(f))
 
 
 
