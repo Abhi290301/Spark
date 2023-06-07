@@ -1,7 +1,7 @@
 package DataFrames
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{col, lit}
+import org.apache.spark.sql.functions.{array_contains, col, lit}
 
 object DataFrameExample {
   def main(args: Array[String]): Unit = {
@@ -88,9 +88,9 @@ object NewDataFrame {
 
     //Creating a table
 
-    val arrayStrct = Seq(
+    val data = Seq(
       Row(Row("Abhishek", "", "Chandel"), List("Java", "Android", "Scala"), "Himachal", "Male", List(10, 20),30),
-      Row(Row("Akash", "", ""), List("Data Science"), "Delhi", "Male", List(10, 20),200),
+      Row(Row("Akash", "", ""), List("Data Science","angular","java"), "Delhi", "Male", List(10, 20),200),
       Row(Row("Nikhil", "kumar", "Rana"), List("C++", "Angular"), "Kangra", "Male", List(10, 20),20)
     )
 
@@ -107,18 +107,18 @@ object NewDataFrame {
       .add("salary",IntegerType)
 
 
-    val cf = spark.createDataFrame(spark.sparkContext.parallelize(arrayStrct), structScheme)
+    val cf = spark.createDataFrame(spark.sparkContext.parallelize(data), structScheme)
     cf.printSchema()
     cf.show()
     val cf2 = cf.withColumn("Country",lit("India")).withColumn("hike",col("salary")*100)
     cf2.show(false)
 
 
-    cf2.show(false)
-
     println("Now using the Where "+cf2.where(cf2("hike")===2000).show(false))
 
-
+    //Value from an array
+    val adf= cf.where(array_contains(cf("languages"),"java"))
+    adf.show(false)
 
   }
 }

@@ -12,8 +12,8 @@ object WordCountExample {
      val rdd = spark.sparkContext.textFile("C:\\tmp\\data.txt")
     println("initial partitioning count"+rdd.getNumPartitions)
 
-    val rddCheck = spark.range(5,20).toDF().rdd
-    rddCheck.foreach(println)
+//    val rddCheck = spark.range(5,20).toDF().rdd
+//    rddCheck.foreach(println)
 
     val repar = rdd.repartition(4)
     println("After Repartioning"+repar.getNumPartitions)
@@ -29,9 +29,10 @@ object WordCountExample {
 
     //Step 3 Filter
 
-    val rdd4 = rdd3.filter(f=>f._1.startsWith("a"))
+    val rdd4 = rdd3.filter(f=>f._1.startsWith("A"))
     rdd4.foreach(println)
 
+     val rdd7 = rdd3.filter(f=>f._1.startsWith("e"))
 
     //ReduceBy transformation
     val rdd5 = rdd3.reduceByKey(_ + _)
@@ -63,15 +64,10 @@ object WordCountExample {
     data3.foreach(f => {
       println("data3 Key:" + f._1 + ", Value:" + f._2)
     })
-
     //Action - collect
     val data = rdd6.collect()
     data.foreach(f => {
       println("Key:" + f._1 + ", Value:" + f._2)
     })
-
-
   }
-
-
 }
