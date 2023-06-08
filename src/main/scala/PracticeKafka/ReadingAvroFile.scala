@@ -27,11 +27,11 @@ object ReadingAvroFile {
     try {
       while (dataFileReader.hasNext) {
         val record = dataFileReader.next()
-        val key = record.get("key").toString // Replace "key" with the appropriate key field name
-        val avroValue = record.get("value") // Replace "value" with the appropriate value field name
+      // Replace "keyField" with the appropriate key field name
+        val valueField = record.get("value") // Replace "valueField" with the appropriate value field name
 
-        val schema = record.getSchema
-        val producerRecord = new ProducerRecord[String, GenericRecord](topic, key, avroValue.asInstanceOf[GenericRecord])
+        record.getSchema
+        val producerRecord = new ProducerRecord[String, GenericRecord](topic,valueField.asInstanceOf[GenericRecord])
         producer.send(producerRecord)
       }
     } finally {

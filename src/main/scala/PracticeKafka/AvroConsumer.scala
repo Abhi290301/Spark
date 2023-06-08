@@ -1,14 +1,18 @@
 package PracticeKafka
 
+
 import java.util.{Collections, Properties}
 import org.apache.kafka.clients.consumer.{ConsumerConfig, KafkaConsumer}
 import org.apache.kafka.common.serialization.StringDeserializer
 import io.confluent.kafka.serializers.KafkaAvroDeserializer
 import org.apache.avro.generic.GenericRecord
+import org.apache.kafka.clients.consumer.ConsumerRecord
+
+import scala.jdk.CollectionConverters.IterableHasAsScala
 
 object AvroConsumer {
   def main(args: Array[String]): Unit = {
-    val topic = "your-topic-name"
+    val topic = "Testing-Topic"
 
     val props = new Properties()
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
@@ -24,11 +28,11 @@ object AvroConsumer {
     try {
       while (true) {
         val records = consumer.poll(java.time.Duration.ofMillis(100))
-        for (record <- records) {
-          val key = record.key()
+        for (record: ConsumerRecord[String, GenericRecord] <- records.asScala) {
+
           val value = record.value()
 
-          println(s"Key: $key, Value: $value")
+          println(s" Value: $value")
           // Process the Avro record as needed
         }
       }
