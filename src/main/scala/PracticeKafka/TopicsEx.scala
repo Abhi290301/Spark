@@ -9,7 +9,7 @@ object TopicsEx {
   def main(args: Array[String]): Unit = {
     val bootstrapServer = "localhost:9092"
     val numPartitions = 1
-    val topicName = "Testing-Topic"
+    val topicName = "json-data"
 
     //Configuring AdminClient
     val props = new Properties()

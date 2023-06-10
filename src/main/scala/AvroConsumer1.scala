@@ -23,8 +23,7 @@ object AvroConsumer1 {
 
     /*
         Read schema to convert Avro data to DataFrame
-         */
-    val jsonFormatSchema = new String(
+         */    val jsonFormatSchema = new String(
       Files.readAllBytes(Paths.get("C:\\tmp\\output\\person.avro")))
 
       val personDf = df.select(from_avro(col("value"),jsonFormatSchema).as( "person"))

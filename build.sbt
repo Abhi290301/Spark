@@ -13,7 +13,14 @@ libraryDependencies ++= Seq(
   "org.apache.hadoop" % "hadoop-hdfs-test" % "0.22.0",
   "org.apache.spark" %% "spark-hive" % "3.3.2" % "provided",
   "org.scalatest" %% "scalatest" % "3.2.15" % Test,
-  "org.apache.avro" % "avro" % "1.11.0"
+  "org.apache.avro" % "avro" % "1.11.0",
+
+"org.apache.kafka" %% "kafka-streams-scala" % "3.4.0"
+,
+"org.apache.kafka" % "kafka-streams" % "3.4.0",
+  // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
+ "com.google.protobuf" % "protobuf-java" % "4.0.0-rc-2"
+
 )
 resolvers ++= Seq(
   "confluent" at "https://packages.confluent.io",

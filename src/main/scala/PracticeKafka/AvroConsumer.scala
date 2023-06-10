@@ -1,13 +1,12 @@
 package PracticeKafka
 
 
-import java.util.{Collections, Properties}
-import org.apache.kafka.clients.consumer.{ConsumerConfig, KafkaConsumer}
-import org.apache.kafka.common.serialization.StringDeserializer
 import io.confluent.kafka.serializers.KafkaAvroDeserializer
 import org.apache.avro.generic.GenericRecord
-import org.apache.kafka.clients.consumer.ConsumerRecord
+import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord, KafkaConsumer}
+import org.apache.kafka.common.serialization.StringDeserializer
 
+import java.util.{Collections, Properties}
 import scala.jdk.CollectionConverters.IterableHasAsScala
 
 object AvroConsumer {
@@ -33,7 +32,7 @@ object AvroConsumer {
           val value = record.value()
 
           println(s" Value: $value")
-          // Process the Avro record as needed
+
         }
       }
     } finally {
