@@ -12,22 +12,23 @@
 //
 //    // Create a Kafka producer
 //    val producer = new KafkaProducer[Array[Byte], Array[Byte]](props)
-//
+
 //    // Create your Protobuf message
 //    val protobufMessage = YourProtobufMessage.newBuilder()
 //      .setField1("value1")
 //      .setField2(123)
 //      .build()
-//
+
 //    // Serialize the Protobuf message to a byte array
 //    val serializedMessage = protobufMessage.toByteArray
-//
+
 //    // Create a Kafka producer record with the serialized message
 //    val record = new ProducerRecord[Array[Byte], Array[Byte]]("your_topic", serializedMessage)
-//
+
 //    // Send the record to Kafka
 //    producer.send(record)
-//
+
+
 //    // Close the producer
 //    producer.close()
 //

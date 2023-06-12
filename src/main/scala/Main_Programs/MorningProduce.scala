@@ -1,6 +1,9 @@
-import java.util.Properties
+package Main_Programs
+
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.common.serialization.StringSerializer
+
+import java.util.Properties
 
 object MorningProduce {
   def main(args: Array[String]): Unit = {
